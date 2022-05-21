@@ -1,0 +1,1 @@
+First ever project of Rock, Paper and Scissors under the guidance of the odin project. 

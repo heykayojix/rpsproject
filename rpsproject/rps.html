@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const selection = ["rock", "paper", "scissors"];
+
+      // Function to allow computer choose weapon randomly
+
+      // The random function was placed in the Selection variable's square brackets to enable the function return and output the values of the array instead of the index of the array.
+      const computerPlay = function () {
+        return selection[Math.floor(Math.random() * selection.length)];
+      };
+
+      // Initialization:
+      let playerScore = 0;
+      let computerScore = 0;
+      const playerSelection = "";
+      const computerSelection = "";
+
+      // Player GamePlay function:
+      const playRound = function (playerSelection, computerSelection) {
+        if (playerSelection.toLowerCase() === computerSelection) {
+          alert(
+            `You both coincidentally chose ${playerSelection}, ${computerSelection}.`
+          );
+        } else if (
+          (playerSelection.toLowerCase() === "rock" &&
+            computerSelection === "scissors") ||
+          (playerSelection.toLowerCase() === "scissors" &&
+            computerSelection === "paper") ||
+          (playerSelection.toLowerCase() === "paper" &&
+            computerSelection === "rock")
+        ) {
+          alert(
+            `Your ${playerSelection} beats Computer's ${computerSelection}. You have a score of:` +
+              ++playerScore
+          );
+        } else {
+          alert(
+            `Computer's ${computerSelection} beats your ${playerSelection}. Computer has a score of:` +
+              ++computerScore
+          );
+        }
+      };
+
+      // Computer random GamePlay in a variable
+      // let computerSelection = computerPlay();
+      // I had to comment out the computerSelection variable because the 5 round loop was returning the same value for the computer play. so I had to pass the computerPlay function as a parameter directly to the playRound function.
+
+      // Function that declares winner after 5 rounds
+      const declareWinner = function () {
+        for (let index = 1; index <= 5; index++) {
+          playRound(prompt("Your weapon preference?"), computerPlay());
+        }
+
+        if (playerScore > computerScore) {
+          return `Congratulations!! You scored a total of ${playerScore} out of 5, while computer had a total of ${computerScore} out of 5. You are the final winner.`;
+        } else if (playerScore < computerScore) {
+          return `Computer scored a total of ${computerScore} out of 5, while you had a total of ${playerScore} out of 5. Computer is the final winner`;
+        }
+        return "This is an unfortunate draw, Play Again!";
+      };
+
+      alert(declareWinner());
+    </script>
+  </body>
+</html>
